@@ -16,7 +16,7 @@ class CreateClassManagersTable extends Migration
         Schema::create('class_managers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->boolean('type', ['premium, free'])->default('free');
+            $table->enum('type', ['premium', 'free'])->default('free');
             $table->string('degree');
             $table->integer('class_limit')->default(5)->commnet('1 manager create limit 5 class');
             $table->integer('student_limit')->default(20)->commnet('1 class add limit 20 student');
