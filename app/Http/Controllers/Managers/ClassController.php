@@ -25,8 +25,15 @@ class ClassController extends Controller
         if (!$class) {
             abort('404');
         }
-        $isLecture = $this->classService->isLecture($class);
-        return view('classes.detail', ['class' => $class, 'isLecture' => $isLecture]);
+        $isLecture = $this->classService->isLecturer($class);
+        $lessions = $this->classService->getLession($classId);
+        $student = $this->classService->getStudent($classId);
+        return view('classes.detail', [
+            'class' => $class,
+            'isLecture' => $isLecture,
+            'lessions' => $lessions,
+            'student' => $student
+        ]);
     }
 
     public function createClass(CreateClassRequestForm $request) {

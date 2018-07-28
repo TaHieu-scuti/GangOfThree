@@ -26,10 +26,12 @@
 </div>
 <div class="ui grid">
     <div class="eleven wide column">
-        @include('classes.lessions')
+        @include('classes.lessions', ['lessions' => $lessions])
     </div>
-    <div class="five wide column">
-        @include('classes.members')
-    </div>
+    @if ($isLecture > 0)
+        <div class="five wide column">
+            @include('classes.members', ['student' => $student])
+        </div>
+    @endif
 </div>
 @endsection
