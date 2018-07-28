@@ -62,13 +62,10 @@ class RegisterController extends Controller
             $pathfile = rand(100, 10000).'-'.$filename;
             $file->move($folder, $pathfile);
 
-            $attribute['avatar'] = $pathfile;
+            $userData['avatar'] = $pathfile;
         }
         $this->userService->register($userData);
-        $checkLogin = Auth::attempt(['email' => $userData['email'], 'password' => $userData['password']]);
-        if (!$checkLogin) {
-            return Response::json(['systemErrors' => ['error' => 'Odd error!']]);
-        }
+        Auth::attempt(['email' => $userData['email'], 'password' => $userData['password']]);
         return $this->registered($request, $userData)
                         ?: redirect($this->redirectPath());
     }
