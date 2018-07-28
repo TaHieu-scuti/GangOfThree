@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Request\ClassManagerRegister;
 
 class ClassManagerRegisterController extends Controller
 {
@@ -46,50 +47,20 @@ class ClassManagerRegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    public function register(ClassManagerRegister $request)
     {
-        return Validator::make($data, [
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'avatar' => 'max:10000|mimes:jpeg,png,jpg',
-            'fullname' => 'required|string|max:100',
-            'facebook' => 'string|max:255',
-            'skype' => 'string|max:255',
-            'degree' => 'string|max:100',
-            'description' => 'string',
-        ]);
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
-    {        
-        $imageName = '';
-        if ($data->file('avatar') !==null) {
-            $imageName = $data->file('avatar')
-                        ->getClientOriginalName()
-                        ->getClientOriginalExtension();
-        }
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'avatar' => $imageName,
-            'dob' => $data['dob'],
-            'fullname' => $data['fullname'],
-            'facebook' => $data['facebook'],
-            'skype' => $data['skype'],
-            'status' => $data['status'],
-            'type' => $data['type'],
-            'degree' => $data['degree'],
-            'class_limit' => $data['class_limit'],
-            'student_limit' => $data['student_limit'],
-            'description' => $data['description'],
-        ]);
+    public function showRegistrationForm()
+    {
+        return view('view_here');
     }
 }
