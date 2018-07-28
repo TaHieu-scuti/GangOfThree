@@ -65,24 +65,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function register(Request $request)
     {
-        $imageName = '';
-        if ($data->file('avatar') !==null) {
-            $imageName = $data->file('avatar')
-                        ->getClientOriginalName()
-                        ->getClientOriginalExtension();
-        }
-        return User::create([
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'avatar' => $imageName,
-            'dob' => $data['dob'],
-            'fullname' => $data['fullname'],
-            'facebook' => $data['facebook'],
-            'skype' => $data['skype'],
-            'status' => $data['status'],
-        ]);
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('accounts.register_form');
     }
 }

@@ -15,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/student-register', function () {
-    return view('accounts.register_form');
-});
-
 Route::get('/dashboard', function() {
     return view('home');
 });
