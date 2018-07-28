@@ -3,11 +3,12 @@
     <th>Danh sách bài giảng</th>
   </thead>
   <tbody>
+    @if($lessions->count() > 0)
     <tr>
       <td>
         <div class="item">
-          <h4 clas="ui header">1. Class vs Function</h4>
-          <span>Gioi thieu bai giang Gioi thieu bai giang Gioi thieu bai giang Gioi thieu bai giangGioi thieu bai giang</span>
+          <h4 clas="ui header">{{ $lessions->name }}</h4>
+          <span>{{ $lessions->descprition }}</span>
           <div class="ui container">
             <button class="ui left compact icon button"><i class="edit icon"></i></button>
             <button class="right compact ui icon button"><i class="remove icon"></i></button>
@@ -15,6 +16,7 @@
         </div>
       </td>
     </tr>
+    @endif
     <tr>
       <td>
         <div class="item">

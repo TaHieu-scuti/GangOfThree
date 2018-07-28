@@ -5,5 +5,6 @@ interface ClassServiceInterface
 {
     public function createClass($data);
     public function getDetailClass($classId);
-    public function isLecture($class);
+    public function isLecturer($class);
+    public function getLession($classId);
 }
