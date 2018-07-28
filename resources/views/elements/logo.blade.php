@@ -1,0 +1,1 @@
+<img class="ui avatar image" src="/images/logo.jpg">

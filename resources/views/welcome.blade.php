@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Gang Of Three</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -104,7 +104,6 @@
                 <div class="links">
                     <a href="https://laravel.com/docs">Become A Lecturer</a>
                     <a href="{{ route('register') }}">Become A Student</a>
-
                 </div>
             </div>
         </div>

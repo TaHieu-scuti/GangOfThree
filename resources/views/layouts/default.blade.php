@@ -17,6 +17,18 @@
         <script src="/theme/semantic.min.js"></script>
     </head>
     <body>
-        @yield('content')
+        <div class="ui container">
+            @include('elements.header')
+            <div class="ui grid">
+              <div class="four wide column">
+                @include('elements.sidebar')
+              </div>
+              <div class="twelve wide stretched column">
+                <div class="ui segment">
+                  @yield('content')
+                </div>
+              </div>
+            </div>
+        </div>
     </body>
 </html>
