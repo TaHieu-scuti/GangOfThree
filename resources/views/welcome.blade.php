@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Become A Lecturer</a>
+                    <a href="{{ route('lecturer-register') }}">Become A Lecturer</a>
                     <a href="{{ route('register') }}">Become A Student</a>
                 </div>
             </div>

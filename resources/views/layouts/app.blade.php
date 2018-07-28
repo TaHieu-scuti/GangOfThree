@@ -20,6 +20,7 @@
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
     <script src="/theme/semantic.min.js"></script>
+    @yield('header')
 </head>
 <body>
     <div class="ui container">
@@ -28,5 +29,7 @@
             @yield('content')
         </div>
     </div>
+
+    @yield('footer')
 </body>
 </html>

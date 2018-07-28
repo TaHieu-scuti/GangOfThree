@@ -1,77 +1,151 @@
 @extends('layouts.app')
 
+@section('header')
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet"/>
+@endsection
+
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Register') }}</div>
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                            @csrf
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                    @if ($errors->has('name'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                </div>
-                            </div>
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Register') }}
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+    <form class="ui form">
+        <h4 class="ui dividing header">Đăng ký tài khoản Gang#3</h4>
+        <div class="field">
+            <label>Địa chỉ email</label>
+            <div class="two fields">
+                <div class="field">
+                    <input type="text" name="email" placeholder="">
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('email') }}</strong>
+                      </span>
+                    @endif
                 </div>
             </div>
         </div>
-    </div>
+        <div class="field">
+            <label>Tên tài khoản</label>
+            <div class="fields">
+                <div class="two wide field">
+                    <input type="text" name="username" placeholder="">
+                    @if ($errors->has('username'))
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('username') }}</strong>
+                      </span>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Mật khẩu</label>
+            <div class="fields">
+                <div class="two field">
+                    <input type="password" name="password" placeholder="">
+                </div>
+                <div class="two field">
+                    <input type="password" name="repassword" placeholder="Nhập lại mật khẩu">
+                </div>
+                @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('password') }}</strong>
+                      </span>
+                @endif
+            </div>
+        </div>
+        <h4 class="ui dividing header">Thông tin tài khoản</h4>
+        <div class="fields">
+            <div class="seven wide field">
+                <label>Tên đầy đủ</label>
+                <input type="text" name="fullname" placeholder="">
+                @if ($errors->has('fullname'))
+                    <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('fullname') }}</strong>
+                      </span>
+                @endif
+            </div>
+        </div>
+        <div class="fields">
+            <div class="seven wide field">
+                <label>Ngày sinh</label>
+                <input type="text" name="dob">
+                @if ($errors->has('dob'))
+                    <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('dob') }}</strong>
+                      </span>
+                @endif
+            </div>
+        </div>
+        <div class="fields">
+            <div class="seven wide field">
+                <label>Ảnh đại diện</label>
+                <input type="file" onchange="readURL(this);" name="avatar">
+                <img src="{{ asset('images/logo.jpg') }}" id="imageProfile" width="100px" height="100px" style="border: 1px solid rgba(34,36,38,.15); margin-top: 10px;" alt="">
+            </div>
+            @if ($errors->has('avatar'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('avatar') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="fields">
+            <div class="seven wide field">
+                <label>Facebook</label>
+                <input type="text" name="facebook">
+                @if ($errors->has('facebook'))
+                    <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('facebook') }}</strong>
+                      </span>
+                @endif
+            </div>
+            <div class="seven wide field">
+                <label>Skype</label>
+                <input type="text" name="skype">
+                @if ($errors->has('skype'))
+                    <span class="invalid-feedback" role="alert">
+                          <strong>{{ $errors->first('skype') }}</strong>
+                      </span>
+                @endif
+            </div>
+        </div>
+        <h4 class="ui dividing header">Thông tin quản lý lớp học</h4>
+        <div class="fields">
+            <div class="seven wide field">
+                <label>Học Vị</label>
+                <input type="text" name="degree" placeholder="Học Vị">
+                @if ($errors->has('degree'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('degree') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+        <div class="field">
+            <label>Giới thiệu</label>
+            <textarea name="description"></textarea>
+            @if ($errors->has('description'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('description') }}</strong>
+                </span>
+            @endif
+        </div>
+        <div class="ui button" tabindex="0">Submit Order</div>
+    </form>
+@endsection
+
+@section('footer')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageProfile')
+                        .attr('src', e.target.result)
+                        .width(100)
+                        .height(100);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 @endsection
