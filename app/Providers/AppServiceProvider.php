@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\UserServiceInterface;
+use App\Interfaces\ClassServiceInterface;
 use App\Services\UserService;
+use App\Services\ClassService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             UserServiceInterface::class,
             UserService::class
+        );
+
+        $this->app->singleton(
+            ClassServiceInterface::class,
+            ClassService::class
         );
     }
 }
