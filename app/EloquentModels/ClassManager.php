@@ -3,6 +3,7 @@
 namespace App\EloquentModels;
 
 use Illuminate\Database\Eloquent\Model;
+use App\EloquentModels\User;
 
 class ClassManager extends Model
 {
@@ -16,4 +17,9 @@ class ClassManager extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function User()
+    {
+        return $this->hasOne('User');
+    }
 }
