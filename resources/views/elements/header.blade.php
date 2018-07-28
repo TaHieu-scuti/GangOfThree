@@ -1,10 +1,10 @@
 <div class="ui secondary  menu">
-  <a class="item">
+  <div class="item">
     @include('elements.logo')
-  </a>
+  </div>
   <div class="right menu">
-    <a class="ui item">
-      Logout
-    </a>
+    <div class="item">
+      @include('elements.auth_user')
+    </div>
   </div>
 </div>

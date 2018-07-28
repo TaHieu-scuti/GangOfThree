@@ -1,14 +1,8 @@
-<div class="ui vertical fluid tabular menu">
+<div class="ui vertical fluid tabular menu" style="min-height: 70vh">
   <a class="active item">
-    Bio
+    Danh sách lớp học
   </a>
   <a class="item">
-    Pics
-  </a>
-  <a class="item">
-    Companies
-  </a>
-  <a class="item">
-    Links
+    Tài khoản
   </a>
 </div>

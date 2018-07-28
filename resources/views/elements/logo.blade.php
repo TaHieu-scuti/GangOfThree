@@ -1,1 +1,1 @@
-<img class="ui avatar image" src="/images/wireframe/square-image.png">
+<img class="ui avatar image" src="/images/logo.jpg">
