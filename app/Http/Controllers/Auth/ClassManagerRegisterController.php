@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class ClassManagerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -56,6 +56,8 @@ class RegisterController extends Controller
             'fullname' => 'required|string|max:100',
             'facebook' => 'string|max:255',
             'skype' => 'string|max:255',
+            'degree' => 'string|max:100',
+            'description' => 'string',
         ]);
     }
 
@@ -66,7 +68,7 @@ class RegisterController extends Controller
      * @return \App\User
      */
     protected function create(array $data)
-    {
+    {        
         $imageName = '';
         if ($data->file('avatar') !==null) {
             $imageName = $data->file('avatar')
@@ -83,6 +85,11 @@ class RegisterController extends Controller
             'facebook' => $data['facebook'],
             'skype' => $data['skype'],
             'status' => $data['status'],
+            'type' => $data['type'],
+            'degree' => $data['degree'],
+            'class_limit' => $data['class_limit'],
+            'student_limit' => $data['student_limit'],
+            'description' => $data['description'],
         ]);
     }
 }
