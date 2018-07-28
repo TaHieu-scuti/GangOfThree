@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\UserRegister;
 use App\Interfaces\UserServiceInterface;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -63,8 +65,10 @@ class RegisterController extends Controller
             $attribute['avatar'] = $pathfile;
         }
         $this->userService->register($userData);
-        $this->guard()->login($userData);
-
+        $checkLogin = Auth::attempt(['email' => $userData['email'], 'password' => $userData['password']]);
+        if (!$checkLogin) {
+            return Response::json(['systemErrors' => ['error' => 'Odd error!']]);
+        }
         return $this->registered($request, $userData)
                         ?: redirect($this->redirectPath());
     }
