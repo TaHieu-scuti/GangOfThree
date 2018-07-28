@@ -22,9 +22,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/class', function() {
-    return view('classes.register');
-});
+Route::get('/class', 'Managers\ClassController@showFormCreateClass')->name('create-class');
+Route::post('/class', 'Managers\ClassController@createClass')->name('create-class-submit');
 
 Route::get('/detail', function() {
     return view('classes.detail');
