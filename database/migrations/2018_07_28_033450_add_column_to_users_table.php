@@ -14,12 +14,12 @@ class AddColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('fullname');
+            $table->string('fullname', 100);
             $table->string('avatar')->nullable();
             $table->string('facebook')->nullable();
             $table->string('skype')->nullable();
-            $table->string('dob')->nullable();
-            $table->string('status')->default(1)->comment('1: active, 2: unActive');
+            $table->date('dob')->nullable();
+            $table->boolean('status')->default(1)->comment('1: active, 2: unActive');
         });
     }
 

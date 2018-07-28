@@ -17,8 +17,8 @@ class CreateClassLessionsTable extends Migration
             $table->increments('id');
             $table->integer('class_id');
             $table->string('descprition')->nullable();
-            $table->string('lession_url')->nullable();
-            $table->string('excercises_url')->nullable();
+            $table->string('lession_url', 500)->nullable();
+            $table->string('excercises_url', 500)->nullable();
             $table->date('start_day')->nullable();
             $table->dateTime('excercises_deadline')->nullable();
             $table->string('youtube_url')->nullable();

@@ -17,7 +17,7 @@ class CreateStudentClassesTable extends Migration
             $table->increments('id');
             $table->integer('class_id');
             $table->integer('student_id');
-            $table->string('evaluation')->nullable();
+            $table->integer('evaluation')->nullable();
             $table->timestamps();
         });
     }

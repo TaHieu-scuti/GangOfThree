@@ -17,7 +17,7 @@ class CreateClassManagersTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->enum('type', ['premium', 'free'])->default('free');
-            $table->string('degree');
+            $table->string('degree', 100);
             $table->integer('class_limit')->default(5)->commnet('1 manager create limit 5 class');
             $table->integer('student_limit')->default(20)->commnet('1 class add limit 20 student');
             $table->text('description')->nullable();

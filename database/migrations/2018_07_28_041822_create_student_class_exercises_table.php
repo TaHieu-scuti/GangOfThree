@@ -18,8 +18,8 @@ class CreateStudentClassExercisesTable extends Migration
             $table->integer('class_id');
             $table->integer('student_id');
             $table->integer('lession_id');
-            $table->string('excercise_submission_url')->nullable();
-            $table->string('evaluation')->nullable();
+            $table->string('excercise_submission_url', 500)->nullable();
+            $table->integer('evaluation')->nullable();
             $table->timestamps();
         });
     }

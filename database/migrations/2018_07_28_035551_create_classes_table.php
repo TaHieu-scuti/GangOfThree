@@ -16,13 +16,13 @@ class CreateClassesTable extends Migration
         Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('manager_id');
-            $table->string('name');
+            $table->string('name', 100);
             $table->date('start_date');
             $table->date('stop_date');
-            $table->string('desciption')->nullable();
-            $table->string('price')->nullable();
+            $table->text('desciption')->nullable();
+            $table->integer('price')->nullable();
             $table->string('tags')->nullable();
-            $table->string('status')->default(1)->comment('1: active, 2: unActive');
+            $table->boolean('status')->default(1)->comment('1: active, 2: unActive');
             $table->timestamps();
         });
     }
