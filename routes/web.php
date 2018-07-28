@@ -21,3 +21,11 @@ Route::get('/dashboard', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/class', function() {
+    return view('classes.register');
+});
+
+Route::get('/detail', function() {
+    return view('classes.detail');
+});
