@@ -24,7 +24,6 @@ class ClassManagerRegister extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'avatar' => 'max:10000|mimes:jpeg,png,jpg',

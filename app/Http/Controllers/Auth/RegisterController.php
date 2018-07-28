@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Http\Requests\UserRegister;
+use App\Interfaces\UserServiceInterface;
 
 class RegisterController extends Controller
 {
@@ -36,9 +37,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( UserServiceInterface $userService)
     {
         $this->middleware('guest');
+
+        $this->userService = $userService;
     }
 
     /**
@@ -49,8 +52,7 @@ class RegisterController extends Controller
      */
     public function register(UserRegister $request)
     {
-        $this->validator($request->all())->validate();
-        $attribute = $request->all();
+        $userData = $request->all();
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $folder = public_path('images/avatars');
@@ -60,11 +62,10 @@ class RegisterController extends Controller
 
             $attribute['avatar'] = $pathfile;
         }
-        event(new Registered($user = $this->create($attribute)));
+        $this->userService->register($userData);
+        $this->guard()->login($userData);
 
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
+        return $this->registered($request, $userData)
                         ?: redirect($this->redirectPath());
     }
 

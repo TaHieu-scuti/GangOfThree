@@ -27,18 +27,6 @@
             </div>
         </div>
 
-        <div class="fields">
-            <div class="seven wide field">
-                <label>Tên tài khoản</label>
-                <input type="text" name="username" placeholder="">
-                @if ($errors->has('username'))
-                    <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('username') }}</strong>
-                  </span>
-                @endif
-            </div>
-        </div>
-
         <div class="field">
             <label>Mật khẩu</label>
             <div class="fields">
