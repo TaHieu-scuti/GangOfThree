@@ -30,7 +30,7 @@
     </div>
     @if ($isLecture > 0)
         <div class="five wide column">
-            @include('classes.members')
+            @include('classes.members', ['student' => $student])
         </div>
     @endif
 </div>
