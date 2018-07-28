@@ -21,3 +21,7 @@ Route::get('/dashboard', function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('lecturer/register', function () {
+    return view('accounts.register-manager-form');
+})->name('lecturer-register');
