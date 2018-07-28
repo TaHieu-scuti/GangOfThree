@@ -5,4 +5,7 @@
   <a class="item">
     Tài khoản
   </a>
+  <a href="{{ url('sign-out') }}"class="item">
+    Log out
+  </a>
 </div>

@@ -33,3 +33,7 @@ Route::get('/class', function() {
 Route::get('/detail', function() {
     return view('classes.detail');
 });
+Route::get('/sign-out', function() {
+    Auth::logout();
+    return view('welcome');
+})->name('sign-out');
