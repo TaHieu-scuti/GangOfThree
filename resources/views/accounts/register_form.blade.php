@@ -26,11 +26,11 @@
         <input type="password" name="password" placeholder="">
       </div>
        <div class="two field">
-        <input type="password" name="repassword" placeholder="">
+        <input type="password" name="repassword" placeholder="Nhập lại mật khẩu">
       </div>
     </div>
   </div>
-  <h4 class="ui dividing header">Billing Information</h4>
+  <h4 class="ui dividing header">Thông tin tài khoản</h4>
   <div class="field">
     <label>Tên đầy đủ</label>
     <div class="two fields">
@@ -41,37 +41,8 @@
   </div>
   <div class="fields">
     <div class="seven wide field">
-      <label>Card Number</label>
-      <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
-    </div>
-    <div class="three wide field">
-      <label>CVC</label>
-      <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
-    </div>
-    <div class="six wide field">
-      <label>Expiration</label>
-      <div class="two fields">
-        <div class="field">
-          <select class="ui fluid search dropdown" name="card[expire-month]">
-            <option value="">Month</option>
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-          </select>
-        </div>
-        <div class="field">
-          <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
-        </div>
-      </div>
+      <label>Ngày sinh</label>
+      <input type="text" name="card[number]" maxlength="16" placeholder="DD/MM/YYYY">
     </div>
   </div>
    <h4 class="ui dividing header">Receipt</h4>
