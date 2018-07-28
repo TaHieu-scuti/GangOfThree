@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Request\ClassManagerRegister;
+use App\Http\Requests\ClassManagerRegister;
 
 class ClassManagerRegisterController extends Controller
 {
@@ -61,6 +61,6 @@ class ClassManagerRegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('view_here');
+        return view('accounts.register-manager-form');
     }
 }

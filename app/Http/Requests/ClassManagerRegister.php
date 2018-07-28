@@ -13,7 +13,7 @@ class ClassManagerRegister extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,10 +29,10 @@ class ClassManagerRegister extends FormRequest
             'password' => 'required|string|min:6|confirmed',
             'avatar' => 'max:10000|mimes:jpeg,png,jpg',
             'fullname' => 'required|string|max:100',
-            'facebook' => 'string|max:255',
-            'skype' => 'string|max:255',
-            'degree' => 'string|max:100',
-            'description' => 'string',
+            'facebook' => 'string|max:255|nullable',
+            'skype' => 'string|max:255|nullable',
+            'degree' => 'string|max:100|nullable',
+            'description' => 'string|nullable',
         ];
     }
 }

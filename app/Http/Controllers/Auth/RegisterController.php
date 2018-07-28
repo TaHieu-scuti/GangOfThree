@@ -50,8 +50,17 @@ class RegisterController extends Controller
     public function register(UserRegister $request)
     {
         $this->validator($request->all())->validate();
+        $attribute = $request->all();
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $folder = public_path('images/avatars');
+            $filename = $file->getClientOriginalName();
+            $pathfile = rand(100, 10000).'-'.$filename;
+            $file->move($folder, $pathfile);
 
-        event(new Registered($user = $this->create($request->all())));
+            $attribute['avatar'] = $pathfile;
+        }
+        event(new Registered($user = $this->create($attribute)));
 
         $this->guard()->login($user);
 

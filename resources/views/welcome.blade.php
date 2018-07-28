@@ -103,7 +103,7 @@
 
                 <div class="links">
                     <a href="{{ route('lecturer-register') }}">Become A Lecturer</a>
-                    <a href="{{ route('register') }}">Become A Student</a>
+                    <a href="{{ route('student-register') }}">Become A Student</a>
                 </div>
             </div>
         </div>

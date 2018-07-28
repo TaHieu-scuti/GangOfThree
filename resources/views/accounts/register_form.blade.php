@@ -2,10 +2,16 @@
 
 @section('header')
   <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet"/>
+  <style>
+      .invalid-feedback {
+          color: red;
+      }
+  </style>
 @endsection
 
 @section('content')
-<form class="ui form">
+<form class="ui form" action="{{ route('student-register-submit') }}" method="POST" enctype="multipart/form-data">
+  @csrf
   <h4 class="ui dividing header">Đăng ký tài khoản Gang#3</h4>
   <div class="field">
     <label>Địa chỉ email</label>
@@ -20,10 +26,21 @@
       </div>
     </div>
   </div>
-  <div class="field">
-    <label>Tên tài khoản</label>
+
     <div class="fields">
-      <div class="two wide field">
+
+            <label>Tên tài khoản</label>
+            <input type="text" name="username" placeholder="">
+            @if ($errors->has('username'))
+                <span class="invalid-feedback" role="alert">
+                      <strong>{{ $errors->first('username') }}</strong>
+                  </span>
+            @endif
+        </div>
+    </div>
+  <div class="fields">
+      <div class="seven wide field">
+      <label>Tên tài khoản</label>
         <input type="text" name="username" placeholder="">
         @if ($errors->has('username'))
           <span class="invalid-feedback" role="alert">
@@ -31,7 +48,6 @@
           </span>
         @endif
       </div>
-    </div>
   </div>
   <div class="field">
     <label>Mật khẩu</label>
@@ -106,7 +122,7 @@
       @endif
     </div>
   </div>
-  <div class="ui button" tabindex="0">Đăng ký</div>
+  <button type="submit" class="ui button" tabindex="0">Đăng ký</button>
 </form>
 @endsection
 
