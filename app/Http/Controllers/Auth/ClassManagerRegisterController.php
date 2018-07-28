@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\EloquentModels\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClassManagerRegister;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Requests\ClassManagerRegister;
+use Illuminate\Auth\Events\Registered;
+use App\Interfaces\UserServiceInterface;
+
 
 class ClassManagerRegisterController extends Controller
 {
@@ -36,9 +39,10 @@ class ClassManagerRegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserServiceInterface $userService)
     {
         $this->middleware('guest');
+        $this->userService = $userService;
     }
 
     /**
@@ -49,8 +53,6 @@ class ClassManagerRegisterController extends Controller
      */
     public function register(ClassManagerRegister $request)
     {
-        $this->validator($request->all())->validate();
-
         $attribute = $request->all();
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
@@ -61,9 +63,7 @@ class ClassManagerRegisterController extends Controller
 
             $attribute['avatar'] = $pathfile;
         }
-
-        event(new Registered($user = $this->create($attribute)));
-
+        $this->userService->registerLecturer($attribute);
         $this->guard()->login($user);
 
         return $this->registered($request, $user)
