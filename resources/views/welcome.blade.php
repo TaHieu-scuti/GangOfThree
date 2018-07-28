@@ -66,6 +66,19 @@
             .cl-bg {
                 background-color: #e6e7e9;
             }
+
+            #loading {
+                -webkit-animation: rotation 2s 3 linear;
+            }
+
+            @-webkit-keyframes rotation {
+                from {
+                    -webkit-transform: rotate(0deg);
+                }
+                to {
+                    -webkit-transform: rotate(359deg);
+                }
+            }
         </style>
     </head>
     <body>
@@ -82,7 +95,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="{{ asset('images/logo.jpg') }}" height="200px" width="200px" alt="">
+                    <img src="{{ asset('images/logo.jpg') }}" id="loading" height="200px" width="200px" alt="">
                 </div>
                 <div class="title m-b-md">
                     Gang Of Three
