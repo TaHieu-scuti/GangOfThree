@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use App\Interfaces\UserServiceInterface;
+use Illuminate\Support\Facades\Auth;
 
 
 class ClassManagerRegisterController extends Controller
@@ -64,9 +65,9 @@ class ClassManagerRegisterController extends Controller
             $attribute['avatar'] = $pathfile;
         }
         $this->userService->registerLecturer($attribute);
-        $this->guard()->login($user);
+        Auth::attempt(['email' => $attribute['email'], 'password' => $attribute['password']]);
 
-        return $this->registered($request, $user)
+        return $this->registered($request, $attribute)
                         ?: redirect($this->redirectPath());
     }
 

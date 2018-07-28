@@ -23,4 +23,12 @@ class User extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($password)
+    {
+        if (empty($password)) {
+            return;
+        }
+        $this->attributes['password'] = bcrypt($password);
+    }
 }

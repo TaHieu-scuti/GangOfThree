@@ -21,7 +21,7 @@ class UserService implements UserServiceInterface
         $now = Carbon::now()->toDateTimeString();
         $userData['created_at'] = $now;
         $userData['updated_at'] = $now;
-        $this->user->save($userData);
+        $user->create($userData);
     }
 
     public function registerLecturer($userData)
