@@ -27,7 +27,13 @@ class ClassController extends Controller
         }
         $isLecture = $this->classService->isLecturer($class);
         $lessions = $this->classService->getLession($classId);
-        return view('classes.detail', ['class' => $class, 'isLecture' => $isLecture, 'lessions' => $lessions]);
+        $student = $this->classService->getStudent($classId);
+        return view('classes.detail', [
+            'class' => $class,
+            'isLecture' => $isLecture,
+            'lessions' => $lessions,
+            'student' => $student
+        ]);
     }
 
     public function createClass(CreateClassRequestForm $request) {

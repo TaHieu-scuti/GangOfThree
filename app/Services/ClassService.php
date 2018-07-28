@@ -4,6 +4,7 @@ namespace App\Services;
 use App\EloquentModels\Classes;
 use App\EloquentModels\ClassManager;
 use App\EloquentModels\ClassLession;
+use App\EloquentModels\StudentClass;
 use App\Interfaces\ClassServiceInterface;
 
 class ClassService implements ClassServiceInterface
@@ -28,5 +29,9 @@ class ClassService implements ClassServiceInterface
 
     public function getLession ($classId) {
         return ClassLession::where('class_id', $classId)->get();
+    }
+
+    public function getStudent($classId) {
+        return StudentClass::where('class_id', $classId)->with('user')->get();
     }
 }

@@ -7,4 +7,5 @@ interface ClassServiceInterface
     public function getDetailClass($classId);
     public function isLecturer($class);
     public function getLession($classId);
+    public function getStudent($classId);
 }
