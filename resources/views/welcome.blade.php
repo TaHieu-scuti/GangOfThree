@@ -66,8 +66,6 @@
             .cl-bg {
                 background-color: #e6e7e9;
             }
-<<<<<<< HEAD
-=======
 
             #loading {
                 -webkit-animation: rotation 2s 3 linear;
@@ -81,7 +79,6 @@
                     -webkit-transform: rotate(359deg);
                 }
             }
->>>>>>> 39c046419dba11b7d0d917253cdf05b16c2bccdd
         </style>
     </head>
     <body>
@@ -98,11 +95,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-<<<<<<< HEAD
-                    <img src="{{ asset('images/logo.jpg') }}" height="200px" width="200px" alt="">
-=======
                     <img src="{{ asset('images/logo.jpg') }}" id="loading" height="200px" width="200px" alt="">
->>>>>>> 39c046419dba11b7d0d917253cdf05b16c2bccdd
                 </div>
                 <div class="title m-b-md">
                     Gang Of Three
@@ -111,16 +104,8 @@
                 <div class="links">
                     <a href="https://laravel.com/docs">Become A Lecturer</a>
                     <a href="{{ route('register') }}">Become A Student</a>
-<<<<<<< HEAD
-=======
-
->>>>>>> 39c046419dba11b7d0d917253cdf05b16c2bccdd
                 </div>
             </div>
         </div>
     </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 39c046419dba11b7d0d917253cdf05b16c2bccdd
