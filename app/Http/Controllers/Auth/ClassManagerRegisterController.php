@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\EloquentModels\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ClassManagerRegister;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use App\Http\Requests\UserRegister;
+use Illuminate\Auth\Events\Registered;
 use App\Interfaces\UserServiceInterface;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Auth;
 
-class RegisterController extends Controller
+
+class ClassManagerRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -39,22 +40,21 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct( UserServiceInterface $userService)
+    public function __construct(UserServiceInterface $userService)
     {
         $this->middleware('guest');
-
         $this->userService = $userService;
     }
 
     /**
-     * Create a new user instance after a valid registration.
+     * Get a validator for an incoming registration request.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function register(UserRegister $request)
+    public function register(ClassManagerRegister $request)
     {
-        $userData = $request->all();
+        $attribute = $request->all();
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
             $folder = public_path('images/avatars');
@@ -62,16 +62,17 @@ class RegisterController extends Controller
             $pathfile = rand(100, 10000).'-'.$filename;
             $file->move($folder, $pathfile);
 
-            $userData['avatar'] = $pathfile;
+            $attribute['avatar'] = $pathfile;
         }
-        $this->userService->register($userData);
-        Auth::attempt(['email' => $userData['email'], 'password' => $userData['password']]);
-        return $this->registered($request, $userData)
+        $this->userService->registerLecturer($attribute);
+        Auth::attempt(['email' => $attribute['email'], 'password' => $attribute['password']]);
+
+        return $this->registered($request, $attribute)
                         ?: redirect($this->redirectPath());
     }
 
     public function showRegistrationForm()
     {
-        return view('accounts.register_form');
+        return view('accounts.register-manager-form');
     }
 }

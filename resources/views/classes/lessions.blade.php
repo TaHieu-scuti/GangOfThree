@@ -1,7 +1,7 @@
 <table class="ui celled fixed  table">
   <thead>
     <th>Danh sách bài giảng</th>
-  </tr></thead>
+  </thead>
   <tbody>
     <tr>
       <td>

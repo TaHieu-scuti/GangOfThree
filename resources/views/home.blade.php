@@ -1,5 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-Haha
+    <a class="ui facebook button" href="{{ route('create-class') }}">
+        Create Class
+    </a>
 @endsection

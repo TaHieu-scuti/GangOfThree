@@ -1,20 +1,20 @@
 @extends('layouts.default')
 
 @section('content')
-<h2 class="ui header">Lop hoc PHP Can ban</h2>
+<h2 class="ui header">{{ $class->name }}</h2>
 <div class="ui grid">
   <div class="eleven wide column">
-    <p>To hero in Python 3. Learn Python like a Professional! Start from the basics and go all the way to creating your own applications and games!</p>
+    <p>{{ $class->desciption }}</p>
   </div>
   <div class="five wide column">
       <div class="ui feed">
           <div class="event">
             <div class="label">
-              <img src="/images/avatars/hieu.jpg">
+              <img src="{{ asset('images/avatars/'. Auth::user()->avatar) }}" width="28px" height="60px">
             </div>
             <div class="content">
               <div class="summary">
-                 Ta Quang Hieu
+                 {{ Auth::user()->fullname }}
               </div>
               <div class="extra text">
                 Senior Web Developer

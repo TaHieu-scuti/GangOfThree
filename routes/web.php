@@ -25,6 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/class', 'Managers\ClassController@showFormCreateClass')->name('create-class');
 Route::post('/class', 'Managers\ClassController@createClass')->name('create-class-submit');
 
-Route::get('/detail', function() {
-    return view('classes.detail');
-});
+route::post('/lecturer/register', 'Auth\ClassManagerRegisterController@register')->name('lecturer-register-submit');
+route::get('/lecturer/register', 'Auth\ClassManagerRegisterController@showRegistrationForm')->name('lecturer-register');
+route::post('/register', 'Auth\RegisterController@register')->name('student-register-submit');
+route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('student-register');
+Route::get('/detail/{classId}', 'Managers\ClassController@showFormDetailClass')->name('class-detail');
