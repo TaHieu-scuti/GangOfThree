@@ -46,7 +46,7 @@
                     <input type="password" name="password" placeholder="">
                 </div>
                 <div class="two field">
-                    <input type="password" name="repassword" placeholder="Nhập lại mật khẩu">
+                    <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu">
                 </div>
             </div>
             @if ($errors->has('password'))

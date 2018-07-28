@@ -26,18 +26,6 @@
       </div>
     </div>
   </div>
-
-    <div class="fields">
-
-            <label>Tên tài khoản</label>
-            <input type="text" name="username" placeholder="">
-            @if ($errors->has('username'))
-                <span class="invalid-feedback" role="alert">
-                      <strong>{{ $errors->first('username') }}</strong>
-                  </span>
-            @endif
-        </div>
-    </div>
   <div class="fields">
       <div class="seven wide field">
       <label>Tên tài khoản</label>
@@ -56,7 +44,7 @@
         <input type="password" name="password" placeholder="">
       </div>
        <div class="two field">
-        <input type="password" name="repassword" placeholder="Nhập lại mật khẩu">
+        <input type="password" name="password_confirmation" placeholder="Nhập lại mật khẩu">
       </div>
       @if ($errors->has('password'))
         <span class="invalid-feedback" role="alert">
