@@ -1,56 +1,20 @@
 <table class="ui celled fixed  table">
   <thead>
     <th>Danh sách học viên</th>
-  </tr></thead>
+  </thead>
   <tbody>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="item">
-          <img class="ui avatar image" src="/images/avatars/hieu.jpg">
-          <span>Ta Quang Hieu</span>
-        </div>
-      </td>
-    </tr>
+    @if ($student->count() > 0)
+      @foreach($student as $value)
+        <tr>
+          <td>
+            <div class="item">
+              <img class="ui avatar image" src="{{ asset('images/avatars/'. $value->user->avatar) }}">
+              <span>{{$value->user->fullname}}</span>
+            </div>
+          </td>
+        </tr>
+      @endforeach
+    @endif
     <tr>
       <td>
         <div class="item">

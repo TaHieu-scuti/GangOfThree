@@ -14,4 +14,8 @@ class StudentClass extends Model
         'created_at',
         'updated_at'
     ];
+
+    public function user() {
+        return $this->hasOne('App\EloquentModels\User', 'id', 'student_id');
+    }
 }
