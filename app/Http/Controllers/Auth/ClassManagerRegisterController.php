@@ -51,7 +51,18 @@ class ClassManagerRegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+        $attribute = $request->all();
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $folder = public_path('images/avatars');
+            $filename = $file->getClientOriginalName();
+            $pathfile = rand(100, 10000).'-'.$filename;
+            $file->move($folder, $pathfile);
+
+            $attribute['avatar'] = $pathfile;
+        }
+
+        event(new Registered($user = $this->create($attribute)));
 
         $this->guard()->login($user);
 
