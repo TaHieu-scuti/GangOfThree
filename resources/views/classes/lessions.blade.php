@@ -18,9 +18,9 @@
     <tr>
       <td>
         <div class="item">
-          <button class="ui labeled icon button primary">
+          <button class="ui labeled icon button">
             <i class="plus icon"></i>
-            Thêm bài giảng mới
+            <a href=" {{ route('create-lession') }}">Thêm bài giảng mới</a>
           </button>
         </div>
       </td>

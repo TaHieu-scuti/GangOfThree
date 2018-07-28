@@ -30,3 +30,9 @@ route::get('/lecturer/register', 'Auth\ClassManagerRegisterController@showRegist
 route::post('/register', 'Auth\RegisterController@register')->name('student-register-submit');
 route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('student-register');
 Route::get('/detail/{classId}', 'Managers\ClassController@showFormDetailClass')->name('class-detail');
+Route::get('/sign-out', function() {
+    Auth::logout();
+    return view('welcome');
+})->name('sign-out');
+Route::get('/lessions/create', 'LessionController@create')->name('create-lession');
+Route::post('/lession', 'LessionController@store')->name('store-lession');
